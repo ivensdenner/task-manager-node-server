@@ -1,6 +1,6 @@
 import { randomUUID } from 'node:crypto'
 
-const Task = {
+export const Task = {
     init: function(title, description) {
         this.title       = title
         this.description = description

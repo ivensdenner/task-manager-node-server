@@ -1,28 +1,28 @@
 import { Database  } from "./database.js"
 import { randomUUID } from 'node:crypto'
+import { Task } from "./task.js"
 
-const database = new Database()
+const database   = new Database()
+const tasksTable = 'tasks'
 
 export const routes = [
     {
         method: 'GET',
         path: '/tasks',
         handler: (request, response) => {
-            const users = database.select('users')
-            return response.end(JSON.stringify(users))
+            const tasks = database.select(tasksTable)
+            return response.end(JSON.stringify(tasks))
         }
     },
     {
         method: 'POST',
         path: '/tasks',
         handler: (request, response) => {
-            const { name, email } = request.body
-            const user = {
-                id: randomUUID(),
-                name,
-                email
-            }
-            database.insert('users', user)
+            const { title, description } = request.body
+            const task = Task.init(title, description)
+
+            database.insert(tasksTable, task)
+
             return response.writeHead(201).end()
         }
     },
