@@ -3,5 +3,5 @@ export function extractQueryParameters(query) {
         const [key, value] = parameter.split('=')
         parameters[key] = value
         return parameters
-    })
+    }, {})
 }
