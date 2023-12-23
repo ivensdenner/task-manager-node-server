@@ -38,13 +38,19 @@ export const routes = [
         path: buildRoutePath('/tasks/:id'),
         handler: (request, response) => {
             const { id } = request.params
-            const { name, email } = request.body
-            const user = {
-                id,
-                name,
-                email
+            const { title, description } = request.body
+            const tasks = database.select(tasksTable, { id: id })
+
+            if (tasks.length === 0) {
+                return response.writeHead(404).end()
             }
-            database.update(tasksTable, user)
+
+            const taskData = tasks[0]
+            const task = Task.fromData(taskData)
+
+            task.update(title, description)
+            database.update(tasksTable, task)
+
             return response.writeHead(204).end()
         }
     },

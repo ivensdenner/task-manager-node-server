@@ -11,6 +11,17 @@ export class Task {
         this.updated_at   = this.created_at
     }
 
+    static fromData(data) {
+        const task = new Task(data.title, data.description)
+
+        task.id           = data.id
+        task.completed_at = data.completed_at
+        task.created_at   = new Date(data.created_at)
+        task.updated_at   = new Date(data.updated_at)
+
+        return task
+    }
+
     update(title, description) {
         this.title       = title
         this.description = description
