@@ -59,7 +59,7 @@ export const routes = [
         path: buildRoutePath('/tasks/:id'),
         handler: (request, response) => {
             const { id } = request.params
-            database.delete('users', id)
+            database.delete(tasksTable, id)
             return response.writeHead(204).end()
         }
     },
