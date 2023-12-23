@@ -19,7 +19,7 @@ export const routes = [
         path: '/tasks',
         handler: (request, response) => {
             const { title, description } = request.body
-            const task = Task.init(title, description)
+            const task = new Task(title, description)
 
             database.insert(tasksTable, task)
 
