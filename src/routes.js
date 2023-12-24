@@ -46,6 +46,11 @@ export const routes = [
             }
 
             const taskData = tasks[0]
+
+            if (taskData.id !== id) {
+                return response.writeHead(404).end()
+            }
+
             const task = Task.fromData(taskData)
 
             task.update(title, description)

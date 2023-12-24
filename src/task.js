@@ -23,10 +23,21 @@ export class Task {
     }
 
     update(title, description) {
-        this.title       = title
-        this.description = description
+        let updated = false
 
-        this.updated_at = new Date()
+        if (title) {
+            this.title = title
+            updated = true
+        }
+
+        if (description) {
+            this.description = description
+            updated = true
+        }
+
+        if (updated) {
+            this.updated_at = new Date()
+        }
     }
 
     toggleCompletion() {
