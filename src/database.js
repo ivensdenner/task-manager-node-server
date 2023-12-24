@@ -57,9 +57,12 @@ export class Database {
 
         if (index > -1) {
             this.#database[table].splice(index, 1)
+            this.#persist()
+
+            return true
         }
 
-        this.#persist()
+        return false
     }
 
 }
