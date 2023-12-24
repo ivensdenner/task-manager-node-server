@@ -68,12 +68,18 @@ export const routes = [
         path: buildRoutePath('/tasks/:id/complete'),
         handler: (request, response) => {
             const { id } = request.params
-            const user = database.select('users', id)
-            const updatedUser = {
-                ...user,
-                completed: true
+            const tasks = database.select(tasksTable, { id: id })
+
+            if (tasks.length === 0) {
+                return response.writeHead(404).end()
             }
-            database.update('users', updatedUser)
+
+            const taskData = tasks[0]
+            const task = Task.fromData(taskData)
+
+            task.toggleCompletion()
+            database.update(tasksTable, task)
+
             return response.writeHead(204).end()
         }
     }
