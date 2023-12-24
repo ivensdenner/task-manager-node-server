@@ -1,2 +1,7 @@
-# task-manager-node-server
-A task manager server for Node.js. Written for study purposes only.
+# Task Manager Node Server
+
+A task manager server for Node.JS.
+
+Written for study purposes only.
+
+Based on the challenge described [here](https://efficient-sloth-d85.notion.site/Desafio-01-2d48608f47644519a408b438b52d913f)
